@@ -73,13 +73,14 @@ module.exports = gql`
         userChangeName(user: ID!, name: String): User!
         userAddTeam(user: ID!, team: ID!): User!
         userAddMatch(user: ID!, match: ID!): User!
+        userAddQueue(user: ID!, queue: ID!): User!
 
         queueCreate(player: ID!, gameMode: GameMode!, region: Region!): Queue!
         queueUpdate(queue: ID!, status: QueueStatus!, match: ID): Queue!
 
         teamCreate(players: [ID!]!): Team!
 
-        matchCreate(team1: ID!, team2: ID!): Match!
+        matchCreate(team1: ID!, team2: ID!, region: Region, gameMode: GameMode): Match!
         matchReport(match: ID!, team1Score: Int, team2Score: Int): Match!
         matchResolve(match: ID!, status: MatchStatus, report: ID!): Match!
     }
