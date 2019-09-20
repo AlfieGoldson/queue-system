@@ -19,6 +19,7 @@
   "homepage": "https://github.com/AlfieGoldson/queue-system#readme",
   "dependencies": {
     "apollo-server": "^2.9.3",
+    "discord.js": "^11.5.1",
     "mongoose": "^5.7.1"
   }
 }

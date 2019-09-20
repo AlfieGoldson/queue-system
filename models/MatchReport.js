@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
-const { ReportStatus } = require('./enums');
+const { MatchReportStatus } = require('./enums');
 
-const Match = require('./Match');
-const Team = require('./Team');
+const { MatchSchema, MatchReportSchema, TeamSchema } = require('./schemasDefs');
 
-module.exports = mongoose.model('MatchReport', {
+MatchReportSchema.add({
     match: Match,
-    team1Score: Int,
-    team2Score: Int,
+    team1Score: Number,
+    team2Score: Number,
     winner: Team,
-    reportStatus: ReportStatus
+    reportStatus: MatchReportStatus
 });
+
+module.exports = mongoose.model('MatchReport', MatchReportSchema);

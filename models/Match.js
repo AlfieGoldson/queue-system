@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
 const { GameMode, MatchStatus, Region } = require('./enums');
 
-const Team = require('./Team');
-const MatchReport = require('./MatchReport');
+const { MatchSchema, MatchReportSchema, TeamSchema } = require('./schemasDefs');
 
-module.exports = mongoose.model('Match', {
-    team1: Team,
-    team2: Team,
-    team1Report: MatchReport,
-    team2Report: MatchReport,
-    result: MatchReport,
+
+MatchSchema.add({
+    team1: TeamSchema,
+    team2: TeamSchema,
+    team1Report: MatchReportSchema,
+    team2Report: MatchReportSchema,
+    result: MatchReportSchema,
     status: MatchStatus,
     region: Region,
     gameMode: GameMode
 });
+
+module.exports = mongoose.model('Match', MatchSchema);

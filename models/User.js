@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const Queue = require('./Queue');
-const Match = require('./Match');
-const Team = require('./Team');
+const { UserSchema, QueueSchema, MatchSchema, TeamSchema } = require('./schemasDefs');
 
-module.exports = mongoose.model('User', {
+UserSchema.add({
     name: String,
     discordID: String,
-    queues: [Queue],
-    match: [Match],
-    teams: [Team]
+    queues: [QueueSchema],
+    match: [MatchSchema],
+    teams: [TeamSchema]
 });
+
+module.exports = mongoose.model('User', UserSchema);

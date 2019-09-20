@@ -2,8 +2,8 @@ const { gql } = require('apollo-server');
 
 module.exports = gql`
     enum GameMode {
-        1V1
-        2V2
+        Singles
+        Doubles
     }
     enum Region {
         USE

@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const { GameMode, QueueStatus, Region } = require('./enums');
 
-const User = require('./User');
-const Match = require('./Match');
+const { QueueSchema, UserSchema, MatchSchema } = require('./schemasDefs');
 
-module.exports = mongoose.model('Queue', {
-    player: User,
+QueueSchema.add({
+    player: UserSchema,
     gamemode: GameMode,
     status: QueueStatus,
     region: Region,
-    match: Match,
+    match: MatchSchema,
 });
+
+module.exports = mongoose.model('Queue', QueueSchema);

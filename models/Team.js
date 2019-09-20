@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
-const User = require('./User');
+const { TeamSchema, UserSchema } = require('./schemasDefs');
 
-module.exports = mongoose.model('Team', {
-    players: [User]
+console.log(User);
+
+TeamSchema.add({
+    players: [UserSchema]
 });
+
+module.exports = mongoose.model('Team', TeamSchema);
