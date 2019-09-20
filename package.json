@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/AlfieGoldson/queue-system/issues"
   },
-  "homepage": "https://github.com/AlfieGoldson/queue-system#readme"
+  "homepage": "https://github.com/AlfieGoldson/queue-system#readme",
+  "dependencies": {
+    "apollo-server": "^2.9.3",
+    "mongoose": "^5.7.1"
+  }
 }
