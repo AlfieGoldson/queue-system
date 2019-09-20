@@ -14,10 +14,16 @@ module.exports = gql`
         USW
         JPN
     }
+    enum UserStatus {
+        Idle
+        InQueue
+        InMatch
+    }
     type User {
         id: ID!
         name: String!
         discordID: String!
+        status: UserStatus
     }
     enum QueueStatus {
         Active
@@ -58,9 +64,23 @@ module.exports = gql`
         status: MatchStatus!
     }
     type Query {
-        users(name: String): [User]
+        users(name: String): [User!]!
+        queues(userID: ID): [Queue!]!
+        matches(userID: ID): [Match!]!
     }
     type Mutation {
-        createUser(name: String!, discordID: String!): User!
+        userCreate(name: String, discordID: String!): User!
+        userChangeName(user: ID!, name: String): User!
+        userAddTeam(user: ID!, team: ID!): User!
+        userAddMatch(user: ID!, match: ID!): User!
+
+        queueCreate(player: ID!, gameMode: GameMode!, region: Region!): Queue!
+        queueUpdate(queue: ID!, status: QueueStatus!, match: ID): Queue!
+
+        teamCreate(players: [ID!]!): Team!
+
+        matchCreate(team1: ID!, team2: ID!): Match!
+        matchReport(match: ID!, team1Score: Int, team2Score: Int): Match!
+        matchResolve(match: ID!, status: MatchStatus, report: ID!): Match!
     }
 `

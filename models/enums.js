@@ -12,6 +12,11 @@ module.exports = {
         'USW',
         'JPN'
     ],
+    UserStatus: [
+        'Idle',
+        'InQueue',
+        'InMatch'
+    ],
     QueueStatus: [
         'Active',
         'Canceled',

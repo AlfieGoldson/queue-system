@@ -7,7 +7,7 @@ module.exports = {
         users: (_, { name }) => User.find({ name })
     },
     Mutation: {
-        createUser: (_, { name, discordID }) => {
+        userCreate: (_, { name, discordID }) => {
             const newUser = new User({ name, discordID })
             newUser.save();
             return newUser;
