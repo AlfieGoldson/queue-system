@@ -1,2 +1,2 @@
-# queue-system
+# Queue System
 Queue System
