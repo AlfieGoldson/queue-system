@@ -4,7 +4,11 @@ const User = require('./models/User');
 
 module.exports = {
     Query: {
-        users: (_, { name }) => User.find({ name })
+        users: (_, { name, discordID }) => {
+            if (discordID)
+                return User.find({ discordID });
+            return User.find(name ? { name } : {});
+        }
     },
     Mutation: {
         // Users

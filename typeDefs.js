@@ -64,7 +64,7 @@ module.exports = gql`
         status: MatchStatus!
     }
     type Query {
-        users(name: String): [User!]!
+        users(name: String, discordID: String): [User!]!
         queues(userID: ID): [Queue!]!
         matches(userID: ID): [Match!]!
     }
