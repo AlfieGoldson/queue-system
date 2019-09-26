@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const queueDB = require('../main').queueDB;
 
 const { UserSchema, QueueSchema, MatchSchema, TeamSchema } = require('./schemasDefs');
 const { UserStatus } = require('../util/enums');
@@ -16,4 +16,4 @@ UserSchema.add({
     teams: [TeamSchema]
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = queueDB.model('User', UserSchema);

@@ -1,9 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const register = require('./functions/register');
-const beginQueue = require('./functions/begin-queue');
-const endQueue = require('./functions/end-queue');
+const queueSystem = require('./main');
 
 client.on('ready', () => {
     console.log(`🤖  • Logged in as ${client.user.tag}!`);
@@ -16,15 +14,15 @@ client.on('message', msg => {
 
     switch (args[0]) {
         case '!register':
-            register(msg.author.id, msg.author.username, msg.channel);
+            queueSystem.register(msg.author.id, msg.author.username, msg.channel);
             break;
 
         case '!q':
-            beginQueue(msg.author.id, '1v1', args[1], msg.channel);
+            queueSystem.startQueue(msg.author.id, '1v1', args[1], msg.channel);
             break;
 
         case '!dq':
-            endQueue(msg.author.id, msg.channel);
+            queueSystem.endQueue(msg.author.id, msg.channel);
             break;
 
         case '!profile':
@@ -38,4 +36,9 @@ client.on('message', msg => {
     }
 });
 
-client.login(process.env.DISCORD_BOT_TOKEN);
+const database = `mongodb+srv://Corehalla:${process.env.MATLAS_KEY}@corehalla-xtv6m.mongodb.net/queue?retryWrites=true&w=majority`;
+queueSystem.connect(database)
+    .then(() => {
+        client.login(process.env.DISCORD_BOT_TOKEN);
+    })
+    .catch(console.error);

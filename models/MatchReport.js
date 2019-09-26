@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const queueDB = require('../main').queueDB;
 const { MatchReportStatus } = require('./enums');
 
 const { MatchSchema, MatchReportSchema, TeamSchema } = require('./schemasDefs');
@@ -11,4 +11,4 @@ MatchReportSchema.add({
     reportStatus: MatchReportStatus
 });
 
-module.exports = mongoose.model('MatchReport', MatchReportSchema);
+module.exports = queueDB.model('MatchReport', MatchReportSchema);

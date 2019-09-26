@@ -2,9 +2,9 @@
   "name": "queue-system",
   "version": "1.0.0",
   "description": "Queue System",
-  "main": "server.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node main.js",
     "build": "babel src -d lib"
   },
   "repository": {

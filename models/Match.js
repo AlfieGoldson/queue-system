@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+const queueDB = require('../main').queueDB;
 const { GameMode, MatchStatus, Region } = require('./enums');
 
 const { MatchSchema, MatchReportSchema, TeamSchema } = require('./schemasDefs');
-
 
 MatchSchema.add({
     team1: TeamSchema,
@@ -15,4 +14,4 @@ MatchSchema.add({
     gameMode: GameMode
 });
 
-module.exports = mongoose.model('Match', MatchSchema);
+module.exports = queueDB.model('Match', MatchSchema);
