@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const register = require('./functions/register');
+const beginQueue = require('./functions/begin-queue');
+const endQueue = require('./functions/end-queue');
 
 client.on('ready', () => {
     console.log(`🤖  • Logged in as ${client.user.tag}!`);
@@ -17,7 +19,12 @@ client.on('message', msg => {
             register(msg.author.id, msg.author.username, msg.channel);
             break;
 
-        case '!queue':
+        case '!q':
+            beginQueue(msg.author.id, '1v1', args[1], msg.channel);
+            break;
+
+        case '!dq':
+            endQueue(msg.author.id, msg.channel);
             break;
 
         case '!profile':

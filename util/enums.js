@@ -1,16 +1,17 @@
 module.exports = {
     GameMode: [
-        '1V1',
-        '2V2'
+        '1v1',
+        '2v2'
     ],
     Region: [
-        'USE',
-        'EU',
-        'SEA',
-        'BRZ',
-        'AUS',
-        'USW',
-        'JPN'
+        'none',
+        'use',
+        'eu',
+        'sea',
+        'brz',
+        'aus',
+        'usw',
+        'jpn'
     ],
     UserStatus: [
         'Idle',

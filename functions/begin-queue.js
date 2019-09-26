@@ -1,28 +1,46 @@
 const User = require('../models/User');
 const Queue = require('../models/Queue');
 
-module.exports = (discordID, channel) => {
-    queue(discordID)
+const messages = require('../util/messages');
+
+module.exports = (discordID, gamemode, region, channel) => {
+    beginQueue(discordID, gamemode, region)
         .then(msg => channel.send(msg)
             .catch(console.error))
-        .catch(console.err);
+        .catch(console.error);
 }
 
-const queue = (discordID) => {
+const beginQueue = (discordID, gamemode, region) => {
     return new Promise((resolve, reject) => {
         User.findOne({ discordID })
             .then(user => {
-                console.log(user);
                 if (!user)
-                    resolve(messages.NOT_REG);
-                else
-                    new User({ discordID, name })
+                    resolve(messages.queue.failure.NOT_REGISTERED);
+                else if (user.status === 'InQueue') {
+                    resolve(messages.queue.failure.ALREADY_QUEUEING);
+                }
+                else if (user.status === 'InMatch') {
+                    resolve(message.queue.failure.ALREADY_IN_MATCH)
+                }
+                else if (user.status === 'Idle') {
+                    const newQueue = new Queue({
+                        player: user,
+                        gamemode,
+                        region
+                    })
                         .save()
-                        .then(_ => {
-                            resolve(messages.SUCCESS_REG);
+                        .then(queue => {
+                            user.status = 'InQueue';
+                            user.queues.push(queue);
+                            user
+                                .save()
+                                .then(_ => resolve(messages.queue.success.QUEUE_START_SUCCESS))
+                                .catch(console.error);
                         })
-                        .catch(console.err);
+                        .catch(console.error)
+
+                }
             })
-            .catch(console.err);
+            .catch(console.error);
     })
 }

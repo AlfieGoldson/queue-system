@@ -16,7 +16,9 @@ module.exports = {
         failure: {
             QUEUE_START_FAILURE: 'Failed to start queue, please try again later.',
             ALREADY_QUEUEING: 'You are already in queue!',
-            NOT_REGISTERED: 'You need to register before queuing, type !register to register'
+            ALREADY_IN_MATCH: 'You are already in a match!',
+            NOT_REGISTERED: 'You need to register before queuing, type !register to register',
+            NOT_IN_QUEUE: 'You are not in queue!'
         }
     },
 
